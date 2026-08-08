@@ -11,6 +11,13 @@ app.get('/', (req, res) => {
   res.send('顧客管理Webアプリ Ver.2 API')
 })
 
+app.get('/api/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    message: 'API接続成功',
+  })
+})
+
 app.listen(PORT, () => {
   console.log(`API server: http://localhost:${PORT}`)
 })
