@@ -1,23 +1,16 @@
-const express = require('express')
-const cors = require('cors')
+const { createApp } = require('./app')
 
-const app = express()
-const PORT = 3000
+const port = Number(process.env.PORT || 3000)
 
-app.use(cors())
-app.use(express.json())
+if (!Number.isInteger(port) || port < 1 || port > 65535) {
+  throw new Error('PORT must be an integer between 1 and 65535')
+}
 
-app.get('/', (req, res) => {
-  res.send('顧客管理Webアプリ Ver.2 API')
+const server = createApp().listen(port, () => {
+  console.log(`API server: http://localhost:${port}`)
 })
 
-app.get('/api/health', (req, res) => {
-  res.json({
-    status: 'ok',
-    message: 'API接続成功',
-  })
-})
-
-app.listen(PORT, () => {
-  console.log(`API server: http://localhost:${PORT}`)
+server.on('error', (error) => {
+  console.error(`API server failed to start: ${error.code || 'UNKNOWN'}`)
+  process.exitCode = 1
 })
