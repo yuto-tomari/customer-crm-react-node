@@ -3,3 +3,12 @@
 .env
 .env.*
 !.env.example
+**/google-token.json
+
+# OAuth credentials and local private keys
+**/google-token*.json
+**/credentials.json
+**/client_secret*.json
+**/service-account*.json
+*.pem
+*.key

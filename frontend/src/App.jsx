@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import AppHeader from './components/AppHeader'
+import ApiStatus from './components/ApiStatus'
 
 function App() {
   const [message, setMessage] = useState('接続確認中...')
@@ -17,8 +19,8 @@ function App() {
 
   return (
     <main>
-      <h1>顧客管理Webアプリ Ver.2</h1>
-      <p>{message}</p>
+      <AppHeader />
+      <ApiStatus message={message} />
     </main>
   )
 }
