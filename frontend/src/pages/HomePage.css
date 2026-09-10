@@ -1,0 +1,161 @@
+/* Ver.1の色・寸法を基準にし、ホーム以外へスタイルが漏れないようにします。 */
+.home-screen {
+  --home-text: #818685;
+  --home-heading: #515254;
+  --home-card: #f1e8dc;
+  --home-green: #7d9680;
+  --home-shadow: rgba(63, 69, 67, 0.08);
+  min-height: 100svh;
+  background: #e1d2c0;
+  color: var(--home-text);
+  color-scheme: light;
+  text-align: left;
+}
+.home-screen, .home-screen * { box-sizing: border-box; }
+#root:has(.home-screen) { width: 100%; border: none; }
+.home-container { max-width: 1200px; margin: 0 auto; padding: 16px 16px 130px; }
+.home-screen h1, .home-screen h2, .home-screen h3 { color: var(--home-heading); margin: 0; line-height: 1.4; font-weight: 700; }
+.home-screen h2 { font-size: 20px; }
+.home-screen h3 { font-size: 16px; }
+.home-screen p { font-size: 13px; line-height: 1.7; }
+.home-screen button { font: inherit; color: inherit; }
+.home-screen button:disabled { opacity: 1; cursor: default; }
+.home-screen svg { width: 24px; height: 24px; flex-shrink: 0; }
+.home-header { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 8px 0 20px; border-bottom: 1px solid #c9bdaf; }
+/* Ver.1はbodyのsans-serifと、h1/h2標準のbold・normal行間を使用。
+   対象の見出しだけを共通化し、Vite由来のフォント設定を打ち消します。 */
+.home-screen :is(.home-brand h1, .home-welcome h2, .home-summary-card h2) {
+  font-family: sans-serif;
+  font-weight: bold;
+  line-height: normal;
+  color: #515254;
+  margin: 0;
+  font-synthesis: initial;
+  text-rendering: auto;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+.home-summary-card h2 {
+  font-size: 22px;
+  letter-spacing: normal;
+}
+.home-welcome p {
+  font-family: sans-serif;
+  font-weight: normal;
+  letter-spacing: normal;
+  color: #818685;
+  font-synthesis: initial;
+  text-rendering: auto;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+.home-brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.home-brand h1 { font-size: clamp(24px, 4vw, 32px); letter-spacing: .08em; }
+.home-brand-title-row { display: flex; align-items: baseline; gap: 8px; }
+.home-brand-version { color: var(--home-green); font-size: 12px; font-weight: 600; letter-spacing: .04em; white-space: nowrap; }
+.home-brand p { margin-top: 4px; font-size: 14px; }
+.home-brand-logo { position: relative; width: 52px; height: 52px; border: 10px solid #aeb6a5; border-radius: 50%; flex-shrink: 0; }
+.home-brand-logo::after { content: ''; position: absolute; width: 12px; height: 12px; right: -8px; bottom: -4px; background: #f19a52; border: 3px solid #e1d2c0; border-radius: 50%; }
+.home-header-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.home-header-actions button { display: grid; justify-items: center; gap: 4px; border: 0; background: transparent; padding: 6px; font-size: 12px; color: var(--home-heading); white-space: nowrap; }
+.home-header-actions svg { transform: translateY(3px); stroke-width: 1.8; }
+.home-overview { display: grid; gap: 16px; padding: 24px 0; }
+.home-welcome { display: flex; flex-direction: column; justify-content: center; align-self: center; padding: 8px 4px; }
+.home-welcome h2 { font-size: clamp(28px, 5vw, 44px); letter-spacing: .04em; }
+.home-welcome p { margin-top: 12px; font-size: 16px; line-height: 1.8; }
+.home-welcome h2:focus { outline: none; }
+/* 本文が少ない段階でも、挨拶と釣り合う高さを確保します。固定高さにせず内容の増加にも対応します。 */
+.home-summary-card { min-height: 180px; padding: 24px; border-radius: 20px; background: var(--home-card); box-shadow: 0 8px 24px var(--home-shadow); }
+.home-summary-card p { margin-top: 20px; }
+.home-badge { display: inline-block; padding: 3px 8px; margin-left: 8px; background: #f5b187; font-size: 10px; border-radius: 999px; vertical-align: middle; }
+.home-action-grid, .home-todo-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.home-action-card { min-height: 170px; padding: 20px; border: 1px solid rgba(63, 69, 67, .12); border-radius: 20px; background: var(--home-card); box-shadow: 0 8px 24px var(--home-shadow); }
+.home-action-card--new { background: #f5b187; }
+.home-action-card--regular { background: var(--home-green); }
+.home-action-heading { display: flex; align-items: center; justify-content: center; gap: 12px; color: var(--home-heading); font-size: 18px; font-weight: 700; }
+.home-action-icon { width: 52px; height: 52px; display: grid; place-items: center; flex-shrink: 0; border-radius: 50%; background: rgba(255, 255, 255, .72); color: var(--home-text); }
+.home-action-icon svg { width: 30px; height: 30px; }
+.home-action-description { display: block; margin-top: 28px; font-size: 13px; text-align: center; }
+.home-action-card--regular .home-action-description { color: #e3e8e4; }
+/* Ver.1同様、集計全体を1枚のカードにまとめます。 */
+.home-stats { margin: 24px 0 28px; padding: 20px; background: var(--home-card); border-radius: 16px; }
+.home-stats-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; }
+.home-stat { min-width: 0; padding: 16px; text-align: center; }
+.home-stat:nth-child(odd) { border-right: 1px solid rgba(129, 134, 133, .2); }
+.home-stat:nth-child(-n + 2) { border-bottom: 1px solid rgba(129, 134, 133, .2); }
+.home-stat-label { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0; font-size: 13px; font-weight: 700; letter-spacing: .04em; }
+.home-stat-value { margin: 8px 0 0; font-size: clamp(22px, 4vw, 30px); font-weight: 700; line-height: 1.2; color: var(--home-heading); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.home-stat-unit { margin-left: 4px; font-size: .5em; color: var(--home-text); }
+.home-stat-unit--prefix { margin-left: 0; margin-right: 4px; }
+.home-stat-description { margin: 8px 0 0; font-size: 12px; line-height: 1.5; }
+.home-stat-icon { width: 28px; height: 28px; display: grid; place-items: center; flex-shrink: 0; color: var(--home-green); }
+.home-stat-icon svg { width: 26px; height: 26px; stroke-width: 1.8; }
+.home-stat-icon--birthday { color: #f5b187; }
+.home-stat-icon--registered { width: auto; min-width: 38px; height: 22px; padding: 0 7px; border: 1.5px solid var(--home-green); border-radius: 5px; font-size: 9px; font-weight: 700; letter-spacing: .06em; line-height: 1; }
+.home-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 16px; }
+.home-section-heading h2 { display: flex; align-items: center; gap: 8px; font-size: 18px; }
+.home-section-heading h2 svg { color: var(--home-green); width: 24px; height: 24px; }
+.home-section-heading button { border: 0; background: transparent; font-size: 12px; white-space: nowrap; }
+/* Ver.1の丸い淡色アイコンと余白を使い、4枚の構成を揃えます。 */
+.home-todo-card { display: flex; flex-direction: column; align-items: center; min-height: 150px; padding: 18px; border: 1px solid rgba(63, 69, 67, .12); border-radius: 18px; background: var(--home-card); box-shadow: 0 8px 24px var(--home-shadow); }
+.home-todo-icon { display: grid; place-items: center; width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; background: rgba(245, 177, 135, .2); color: #f5b187; }
+.home-todo-icon svg { width: 24px; height: 24px; }
+/* カード上段だけを横並びにし、件数と補足文はその下に残します。 */
+.home-todo-card-heading { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; }
+.home-todo-card h3 { margin: 0; font-size: 14px; text-align: center; white-space: nowrap; }
+.home-todo-value { margin-top: 12px; margin-bottom: 18px; font-size: 24px; font-weight: 700; line-height: 1.2; color: var(--home-heading); text-align: center; font-variant-numeric: tabular-nums; }
+.home-todo-unit { margin-left: 3px; font-size: .5em; color: var(--home-text); }
+.home-todo-card p { margin-top: auto; font-size: 12px; line-height: 1.5; text-align: center; }
+.home-recent-grid { display: grid; gap: 28px; margin-top: 28px; }
+.home-empty { padding: 24px 16px; border-radius: 16px; background: var(--home-card); }
+.home-bottom-nav { position: fixed; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); left: 50%; transform: translateX(-50%); width: min(calc(100% - 32px), 620px); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; padding: 8px; border: 1px solid rgba(63, 69, 67, .1); border-radius: 24px; background: rgba(255, 255, 255, .94); box-shadow: 0 12px 32px var(--home-shadow); }
+.home-bottom-nav button { display: grid; justify-items: center; gap: 6px; padding: 10px 4px; border: 0; border-radius: 18px; background: transparent; font-size: 12px; }
+.home-bottom-nav [aria-current="page"] { color: #607862; background: rgba(125, 150, 128, .1); }
+@media (min-width: 768px) {
+  .home-overview { grid-template-columns: .9fr 1.1fr; gap: 24px; padding: 32px 0; }
+  .home-welcome { padding: 24px 8px; }
+  .home-summary-card { min-height: 220px; padding: 32px 24px; }
+}
+@media (min-width: 1024px) {
+  .home-container { padding: 32px 32px calc(130px + env(safe-area-inset-bottom, 0px)); }
+  .home-action-grid, .home-todo-grid, .home-stats-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .home-stat:nth-child(odd) { border-right: none; }
+  .home-stat:nth-child(-n + 2) { border-bottom: none; }
+  .home-stat + .home-stat { border-left: 1px solid rgba(129, 134, 133, .2); }
+  .home-action-grid, .home-todo-grid { gap: 16px; }
+  .home-recent-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+}
+@media (max-width: 600px) {
+  .home-brand-logo { width: 44px; height: 44px; border-width: 8px; }
+  .home-brand { gap: 10px; }
+  .home-brand h1 { font-size: 22px; }
+  .home-header-actions span { display: none; }
+  .home-brand p { font-size: 11px; }
+  .home-header-actions { gap: 6px; }
+  .home-action-heading { flex-direction: column; gap: 10px; font-size: 16px; }
+  .home-action-card { padding: 16px 10px; }
+  .home-action-description { margin-top: 16px; font-size: 12px; }
+  .home-section-heading h2 { font-size: 16px; }
+  .home-todo-card { padding: 16px; }
+}
+
+@media (max-width: 430px) {
+  .home-stats { padding: 12px; }
+  .home-stat { padding: 14px 8px; }
+  .home-stat-label { gap: 5px; font-size: 12px; }
+}
+
+/* ToDo見出しだけを1行に保ち、アイコンと文字を中央で揃えます。 */
+#home-todo-title {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+/* 狭い端末ではカードを1列にし、見出しの横並びを保ちます。 */
+@media (max-width: 400px) {
+  .home-todo-grid { grid-template-columns: minmax(0, 1fr); }
+}

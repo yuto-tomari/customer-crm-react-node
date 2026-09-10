@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './LoginPage.css'
 
-function LoginPage() {
+function LoginPage({ onLogin }) {
   // 項目ごとのエラーをstateに持たせ、送信時と入力時に表示を更新します。
   const [errors, setErrors] = useState({ username: false, password: false })
 
@@ -20,6 +20,8 @@ function LoginPage() {
       return
     }
 
+    // 未入力チェックだけを行い、認証や保存はせずホーム表示を親へ依頼します。
+    onLogin()
   }
 
   function clearError(field) {
