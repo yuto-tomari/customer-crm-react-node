@@ -85,3 +85,27 @@
   outline: 2px solid #607862;
   outline-offset: 3px;
 }
+
+/* Ver.1の淡いオレンジで、未入力の項目を控えめに示します。 */
+.login-field input[aria-invalid="true"] {
+  border: 2px solid #f5b187;
+  /* 枠線が1px増えた分の余白を引き、入力欄の大きさと文字位置を保ちます。 */
+  padding: 11px 13px;
+}
+
+.login-error {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 0;
+  color: #818685;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* 本文は通常色で読みやすくし、装飾マークだけを淡いオレンジにします。 */
+.login-error-mark {
+  flex-shrink: 0;
+  color: #f5b187;
+  font-size: 8px;
+}
